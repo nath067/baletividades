@@ -1,0 +1,201 @@
+* {
+    padding: 0;
+    margin: 0;
+    font-family: Garet, sans-serif;
+    /* font-weight: 100; */
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #705035;
+    height: 12vh;
+    padding-right: 10vw;
+}
+
+.logo {
+    width: 6%;
+    filter: invert(100%);
+}
+
+.itens_header {
+    color: white;
+    text-decoration: none;
+}
+.itens_header:hover{
+    color: #af7d56;
+    border-bottom: 1px solid #af7d56;
+}
+
+
+.niveis {
+    background-color: #EDD6C2;
+    height: 50vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2vw;
+}
+
+.titulo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.titulo > h1 {
+    font-size: 20pt;
+    font-weight: bolder;
+}
+
+.nivel_aitivades {
+    background-color: #C59A78;
+    width: 30vw;
+    height: 25vh;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.opçoes_niveis {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2vw;
+}
+
+.postar_atividade {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 10vh;
+    background-color: #af7d56;
+}
+
+.botao_publicar_atividade {
+    background-color: #EDD6C2;
+    border-radius: 10px;
+    border: none;
+}
+
+.botao_publicar_atividade:hover {
+    background-color: #dfb590;
+    cursor: pointer;
+}
+
+#formulario_atividade {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    gap: 5vh;
+    background-color: #ffdac5;
+    width: 20vw;
+    height: 40vh;
+    border-radius: 10px;
+    border: 1px solid black;
+    transition: 0.5s;
+}
+
+.botao_publicar_atividade {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 10vw;
+    height: 5vh;
+}
+
+.atividades {
+    background-color: #dfb590;
+    height: 50vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 6vw;
+    
+}
+
+.caixa_atividade {
+    /* border: 1px solid green; */
+    width: 15vw;
+    height: 40vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.3);
+    border-radius: 15px;
+}
+
+.foto_atividade {
+    width: 100%;
+    border-top-right-radius: 15px;
+    border-top-left-radius: 15px;
+}
+
+.info_atividade {
+    background-color: #b08666;
+    height: 100%;
+    width: 100%;
+    border-bottom-right-radius: 15px;
+    border-bottom-left-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.texto_atividade {
+    /* border: 1px solid white; */
+    width: 10vw;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.nome {
+    font-size: 13pt;
+}
+
+.nivel_texto {
+    font-size: 10pt;
+}
+
+.botao_salvar {
+    background-color: #EDD6C2;
+    border: none;
+    height: 4vh;
+    width: 4vw;
+    border-radius: 10px;
+}
+
+.botao_salvar:hover {
+    background-color: #dfb590;
+    cursor: pointer;
+}
+
+.avaliacao {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.estrela {
+    font-size: 24px;
+    color: #ccc;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.estrela:hover,
+.estrela.ativa {
+    color: #FFD700;
+}

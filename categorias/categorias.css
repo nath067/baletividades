@@ -1,0 +1,82 @@
+* {
+    padding: 0;
+    margin: 0;
+    font-family: Garet, sans-serif;
+    /* font-weight: 100; */
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #705035;
+    height: 12vh;
+    padding-right: 10vw;
+}
+
+.logo {
+    width: 6%;
+    filter: invert(100%);
+}
+
+.itens_header {
+    color: white;
+    text-decoration: none;
+}
+.itens_header:hover{
+    color: #af7d56;
+    border-bottom: 1px solid #af7d56;
+}
+
+
+.categorias {
+    background-color: #EDD6C2;
+    height: 88vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2vw;
+}
+
+.titulo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.titulo > h1 {
+    font-size: 20pt;
+    font-weight: bolder;
+}
+
+.tipo_categoria {
+    background-color: #C59A78;
+    width: 30vw;
+    height: 25vh;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.link_categoria {
+    color: black;
+    text-decoration: none;
+}
+
+.titulo_categoria:hover{
+    color: #45362a;
+    border-bottom: 1px solid #453427;
+    cursor: pointer;
+}
+
+.opçoes_categorias {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2vw;
+    font-weight: bolder;
+}
+
