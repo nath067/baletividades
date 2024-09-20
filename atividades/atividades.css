@@ -49,6 +49,7 @@ header {
 .titulo > h1 {
     font-size: 20pt;
     font-weight: bolder;
+    
 }
 
 .nivel_aitivades {
@@ -59,6 +60,7 @@ header {
     display: flex;
     justify-content: center;
     align-items: center;
+    
 }
 
 .opçoes_niveis {
@@ -66,20 +68,33 @@ header {
     justify-content: center;
     align-items: center;
     gap: 2vw;
+    
 }
 
+/* Estilização da seção principal */
 .postar_atividade {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 10vh;
+    height: 20vh; 
     background-color: #af7d56;
+    font-family: 'Arial', sans-serif; /* Definição de uma fonte mais básica */
 }
 
+/* Estilização do botão "Postar atividade" principal */
 .botao_publicar_atividade {
     background-color: #EDD6C2;
     border-radius: 10px;
     border: none;
+    width: 12vw;
+    height: 6vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1rem;
+    font-weight: bold;
+    color: #5f4b32;
+    transition: background-color 0.3s ease;
 }
 
 .botao_publicar_atividade:hover {
@@ -87,6 +102,7 @@ header {
     cursor: pointer;
 }
 
+/* Estilização do formulário */
 #formulario_atividade {
     display: none;
     flex-direction: column;
@@ -96,21 +112,73 @@ header {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    gap: 5vh;
+    gap: 2vh;
     background-color: #ffdac5;
-    width: 20vw;
-    height: 40vh;
+    width: 30vw;
+    padding: 20px;
     border-radius: 10px;
-    border: 1px solid black;
+    border: 1px solid #ccc;
     transition: 0.5s;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
 }
 
-.botao_publicar_atividade {
+/* Estilização dos campos do formulário */
+.campo_formulario {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 10vw;
-    height: 5vh;
+    flex-direction: column;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.campo_atividade {
+    font-size: 1rem;
+    font-weight: bold;
+    color: #5f4b32;
+    margin-bottom: 5px;
+}
+
+input[type="text"],
+input[type="number"],
+input[type="file"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    font-size: 1rem;
+    background-color: #fffaf0; /* Fundo de cor bege suave */
+}
+
+/* Estilização dos botões de ação */
+.botoes {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.botoes button {
+    background-color: #EDD6C2;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 1rem;
+    font-weight: bold;
+    color: #5f4b32;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s;
+}
+
+.botoes button:hover {
+    background-color: #dfb590;
+    transform: scale(1.05); /* Leve efeito de aumento ao passar o mouse */
+}
+
+#cancelar_postar_atv {
+    background-color: #f4a896;
+}
+
+#cancelar_postar_atv:hover {
+    background-color: #e08b7b;
 }
 
 .atividades {
