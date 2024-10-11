@@ -5,6 +5,8 @@ document.addEventListener('DOMContentLoaded', async () => {
     // Obtém o ID do usuário logado a partir do objeto
     const id_usuario = usuario_logado.id;
 
+    console.log(usuario_logado);
+
     // Faz uma requisição GET ao backend para obter as atividades salvas do usuário logado
     const response = await fetch(`http://localhost:3001/api/atividade/salva/${id_usuario}`, {
         method: 'GET', // Define o método HTTP como GET
