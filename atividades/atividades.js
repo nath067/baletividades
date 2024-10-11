@@ -1,60 +1,4 @@
-// Recupera o objeto 'usuario' armazenado no localStorage e o converte de JSON para um objeto JavaScript
-const usuario_logado = JSON.parse(localStorage.getItem('usuario'));
-console.log(usuario_logado); // Exibe o objeto do usuário logado no console
-
-// Exibe o ID do usuário logado no console
-console.log(usuario_logado.id);
-
-// Obtém referências aos elementos HTML pelo ID
-const publicar_atividade = document.getElementById('botao_publicar_atividade');
-const formulario_atividade = document.getElementById('formulario_atividade');
-const botao_postar_atv = document.getElementById('botao_postar_atv');
-const cancelar_postar_atv = document.getElementById('cancelar_postar_atv');
-
-// Adiciona um evento de clique ao botão 'publicar_atividade' para exibir o formulário
-publicar_atividade.addEventListener('click', function (event) {
-    formulario_atividade.style.display = 'flex'; // Mostra o formulário ao usuário
-});
-
-// Adiciona um evento de clique ao botão 'cancelar_postar_atv' para esconder o formulário e resetar os campos
-cancelar_postar_atv.addEventListener('click', function (event) {
-    formulario_atividade.style.display = 'none'; // Oculta o formulário
-    formulario_atividade.reset(); // Reseta os campos do formulário
-});
-
-// ----------------- POSTAR ATIVIDADE ---------------------
-
-// Define a ação a ser executada quando o botão 'botao_postar_atv' for clicado
-botao_postar_atv.onclick = async function () {
-    // Obtém o formulário de atividade pelo ID
-    let form = document.getElementById('formulario_atividade');
-    // Cria um objeto FormData com os dados do formulário
-    let dadosForm = new FormData(form);
-
-    // Envia uma requisição POST para o backend com os dados do formulário
-    const response = await fetch('http://localhost:3001/api/postar/atividade', {
-        method: 'POST',
-        body: dadosForm // Envia os dados do formulário como o corpo da requisição
-    });
-
-    let content = await response.json(); // Converte a resposta do servidor para JSON
-    console.log(content); // Exibe a resposta no console
-
-    if (content.success) {
-        alert('Sucesso!'); // Mostra uma mensagem de sucesso ao usuário
-
-        // Oculta o formulário e reseta os campos após o sucesso
-        formulario_atividade.style.display = 'none';
-        formulario_atividade.reset();
-    } else {
-        alert('Algo deu errado, tente novamente!'); // Mostra uma mensagem de erro ao usuário
-    }
-};
-
-// --------------- CARREGAR ATIVIDADE ----------------------
-
 // Função que será executada quando o DOM estiver completamente carregado
-// Executa quando a página for carregada
 document.addEventListener('DOMContentLoaded', async () => {
     // Faz uma requisição GET para obter as atividades do backend
     const response = await fetch('http://localhost:3001/api/get/atividade');
@@ -111,6 +55,11 @@ document.addEventListener('DOMContentLoaded', async () => {
             botao_salvar.className = 'botao_salvar'; // Adiciona uma classe para estilização
             botao_salvar.textContent = 'Salvar'; // Define o texto do botão
 
+            // Cria um botão para visualizar a descrição da atividade
+            const botao_ver_descricao = document.createElement('button');
+            botao_ver_descricao.className = 'botao_descricao'; // Adiciona uma classe para estilização
+            botao_ver_descricao.textContent = 'Ver Descrição'; // Define o texto do botão
+
             // Monta a estrutura do 'div' de informações da atividade
             info_atividade.appendChild(texto_atividade); // Adiciona o 'div' de texto da atividade
             texto_atividade.appendChild(nome); // Adiciona o nome da atividade
@@ -121,6 +70,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
             info_atividade.appendChild(salvar); // Adiciona o 'div' de salvar
             salvar.appendChild(botao_salvar); // Adiciona o botão de salvar
+            salvar.appendChild(botao_ver_descricao); // Adiciona o botão de ver descrição
 
             // Monta a estrutura do 'div' da caixa da atividade
             caixa_atividade.appendChild(img); // Adiciona a imagem da atividade
@@ -128,6 +78,17 @@ document.addEventListener('DOMContentLoaded', async () => {
 
             // Adiciona a atividade à lista de atividades no DOM
             lista_atividades.appendChild(caixa_atividade);
+
+            // ----------------- VER DESCRIÇÃO DA ATIVIDADE ---------------------
+
+            // Adiciona um evento de clique ao botão de ver descrição
+            botao_ver_descricao.addEventListener('click', () => {
+                // Armazena o ID da atividade no localStorage
+                localStorage.setItem('atividade_id', atividade.id);
+
+                // Redireciona para a página de descrição
+                window.location.href = '../descrição/descricao.html';
+            });
 
             // ------------------- SALVAR ATIVIDADE ------------------------
 
@@ -153,7 +114,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             
                 if (content.success) {
                     alert('Atividade salva com sucesso!'); // Mostra uma mensagem de sucesso ao usuário
-                    reload = location.reload(); // Recarrega a página para atualizar a lista de atividades
+                    location.reload(); // Recarrega a página para atualizar a lista de atividades
                 } else {
                     alert('Erro ao salvar atividade!'); // Mostra uma mensagem de erro ao usuário
                 }
