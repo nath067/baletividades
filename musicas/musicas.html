@@ -16,44 +16,41 @@
         <a class="itens_header" href="../musicas/musicas.html">Músicas</a>
         <a class="itens_header" href="../salvos/salvos.html">Salvos</a>
     </header>
+
     <main>
+        <!-- Botão para abrir o formulário de postagem de música -->
+        <section class="postar_musica">
+            <button class="botao_publicar_musica" id="botao_publicar_musica">Postar música</button>
+
+            <!-- Formulário de postagem de música -->
+            <form action="#" id="formulario_musica" enctype="multipart/form-data" style="display: none;">
+                <div class="campo_formulario">
+                    <label class="campo_musica">Nome da Música</label>
+                    <input type="text" id="nome_musica" name="nome" required>
+                </div>
+                <div class="campo_formulario">
+                    <label class="campo_musica">Artista</label>
+                    <input type="text" id="artista_musica" name="artista" required>
+                </div>
+                <div class="campo_formulario">
+                    <label class="campo_musica">Arquivo de Música</label>
+                    <input type="file" id="arquivo_musica" name="arquivo" accept="audio/*" required>
+                </div>
+
+                <div class="botoes">
+                    <button type="button" id="botao_postar_msc">Postar música</button>
+                    <button type="button" id="cancelar_postar_msc">Cancelar</button>
+                </div>
+            </form>
+        </section>
+
+        <!-- Lista de músicas -->
         <section class="musicas">
             <div class="titulo">
                 <h1> Sugestões de músicas para você </h1>
             </div>
-
-            <div class="opçoes_musicas">
-
-                <div class="sugestao_musica">
-                    <div class="img_musica">
-                        <img src="../imagens/musica_foto.jpg" class="imagem_musica" alt="músicas">
-                    </div>
-                    <div class="descricao_msc">
-                        Música
-                    </div>
-                </div>
-
-                <div class="sugestao_musica">
-                    <div class="img_musica">
-                        <img src="../imagens/musica_foto.jpg" class="imagem_musica" alt="músicas">
-                    </div>
-                    <div class="descricao_msc">
-                        Música
-                    </div>
-                </div>
-
-                <div class="sugestao_musica">
-                    <div class="img_musica">
-                        <img src="../imagens/musica_foto.jpg" class="imagem_musica" alt="músicas">
-                    </div>
-                    <div class="descricao_msc">
-                        Música
-                    </div>
-                </div>
-
-
-                    </div>
-                </div>
+            <div class="opçoes_musicas" id="lista_musicas">
+                <!-- Elementos de músicas serão adicionados dinamicamente aqui -->
             </div>
         </section>
     </main>

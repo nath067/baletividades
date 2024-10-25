@@ -8,6 +8,8 @@ const cors = require('cors');
 const atividadeRouter = require('./routes/atividadeRouter');
 const usuarioRouter = require('./routes/cadastroRouter');
 const avaliacaoRouter = require('./routes/avaliacaoRouter');
+const musicaRouter = require('./routes/musicaRouter');
+
 const app = express();
 
 app.set('port', process.env.PORT || 3005);
@@ -20,5 +22,6 @@ app.use('/uploads', express.static(path.join(__dirname, "uploads")))
 app.use('/api', atividadeRouter);
 app.use('/api', usuarioRouter);
 app.use('/api', avaliacaoRouter);
+app.use('/api', musicaRouter);
 
 module.exports = app;
