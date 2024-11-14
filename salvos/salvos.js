@@ -18,6 +18,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     // Verifica se a requisição foi bem-sucedida
     if (result.success) {
+        console.log(usuario_logado.id)
         // Seleciona o elemento que conterá as atividades salvas pelo ID
         const atividadesContainer = document.getElementById('atividadesSalvas');
         atividadesContainer.innerHTML = ''; // Limpa o conteúdo do container antes de adicionar as novas atividades

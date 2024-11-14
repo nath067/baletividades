@@ -43,11 +43,12 @@ async function postarAtividade(request, response) {
         const params = Array(
             request.body.nome,   // Nome da atividade
             request.body.nivel,  // Nível da atividade
-            imagemNome           // Nome do arquivo de imagem
+            imagemNome,
+            request.body.descricao  // Descrição da atividade
         );
 
         // Define a query SQL para inserir uma nova atividade no banco de dados
-        const query = 'INSERT INTO atividade(nome, nivel, imagem) VALUES(?,?,?)';
+        const query = 'INSERT INTO atividade(nome, nivel, imagem, descricao) VALUES(?,?,?,?)';
 
         // Executa a query no banco de dados
         connection.query(query, params, (err, results) => {
@@ -151,10 +152,31 @@ async function atividadesSalvas(request, response) {
     });
 }
 
+async function getAtividadeById(request, response) {
+    const { id } = request.params;
+    const query = 'SELECT * FROM atividade WHERE id = ?';
+
+    connection.query(query, [id], (err, results) => {
+        if (results.length > 0) {
+            response.status(200).json({
+                success: true,
+                data: results[0]
+            });
+        } else {
+            response.status(404).json({
+                success: false,
+                message: "Atividade não encontrada"
+            });
+        }
+    });
+}
+
+
 // Exporta as funções para serem usadas em outros módulos
 module.exports = {
     postarAtividade,
     getAtividades,
     salvarAtividade,
-    atividadesSalvas
+    atividadesSalvas,
+    getAtividadeById
 };

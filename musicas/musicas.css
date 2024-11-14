@@ -64,13 +64,15 @@ header {
     align-items: center;
 }
 
+/* Updated layout for .opçoes_musicas to display in a grid */
 .opçoes_musicas {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* Creates three equal columns */
     gap: 2vw;
     font-weight: bolder;
+    justify-items: center; /* Centers items horizontally */
 }
+
 
 .img_musica {
     width: 30%;

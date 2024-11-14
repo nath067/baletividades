@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     const botaoPublicarMusica = document.getElementById('botao_publicar_musica');
     const botaoCancelarMusica = document.getElementById('cancelar_postar_msc');
 
-    // Função para carregar músicas do backend
+    // Function to load music from the backend
     async function carregarMusicas() {
         const response = await fetch('http://localhost:3001/api/get/musica');
         const result = await response.json();
@@ -26,14 +26,17 @@ document.addEventListener('DOMContentLoaded', async () => {
                 const descricaoDiv = document.createElement('div');
                 descricaoDiv.classList.add('descricao_msc');
 
+                // Create and append title element above the audio player
                 const tituloMusica = document.createElement('p');
                 tituloMusica.textContent = `${musica.nome} - ${musica.artista}`;
+                tituloMusica.classList.add('titulo_musica'); // Optional for styling
                 
                 // Audio player
                 const audioPlayer = document.createElement('audio');
                 audioPlayer.controls = true;
-                audioPlayer.src = `../uploads/musicas/${musica.arquivo}`;
+                audioPlayer.src = `../back/src/uploads/musicas/${musica.arquivo}`;
 
+                // Append title and audio player to description div
                 descricaoDiv.appendChild(tituloMusica);
                 descricaoDiv.appendChild(audioPlayer);
 
@@ -47,17 +50,17 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
     }
 
-    // Mostrar o formulário de postagem ao clicar no botão "Postar música"
+    // Show post form on "Post Music" button click
     botaoPublicarMusica.addEventListener('click', () => {
         formularioMusica.style.display = 'block';
     });
 
-    // Ocultar o formulário ao clicar no botão "Cancelar"
+    // Hide form on "Cancel" button click
     botaoCancelarMusica.addEventListener('click', () => {
         formularioMusica.style.display = 'none';
     });
 
-    // Envia uma nova música para o backend
+    // Submit new music to backend
     document.getElementById('botao_postar_msc').addEventListener('click', async () => {
         const formData = new FormData(formularioMusica);
 
@@ -78,6 +81,6 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
     });
 
-    // Carrega as músicas ao iniciar
+    // Load music on start
     carregarMusicas();
 });

@@ -18,6 +18,8 @@ app.use(express.json());
 app.use(fileUpload())
 
 app.use('/uploads', express.static(path.join(__dirname, "uploads")))
+// Define a pasta de uploads como uma rota estática
+app.use('/uploads/musicas', express.static(path.join(__dirname, 'uploads', 'musicas')));
 
 app.use('/api', atividadeRouter);
 app.use('/api', usuarioRouter);

@@ -1,3 +1,55 @@
+const usuario_logado = JSON.parse(localStorage.getItem('usuario'));
+console.log(usuario_logado); // Exibe o objeto do usuário logado no console
+
+// Exibe o ID do usuário logado no console
+console.log(usuario_logado.id);
+
+// Obtém referências aos elementos HTML pelo ID
+const publicar_atividade = document.getElementById('botao_publicar_atividade');
+const formulario_atividade = document.getElementById('formulario_atividade');
+const botao_postar_atv = document.getElementById('botao_postar_atv');
+const cancelar_postar_atv = document.getElementById('cancelar_postar_atv');
+
+// Adiciona um evento de clique ao botão 'publicar_atividade' para exibir o formulário
+publicar_atividade.addEventListener('click', function (event) {
+    formulario_atividade.style.display = 'flex'; // Mostra o formulário ao usuário
+});
+
+// Adiciona um evento de clique ao botão 'cancelar_postar_atv' para esconder o formulário e resetar os campos
+cancelar_postar_atv.addEventListener('click', function (event) {
+    formulario_atividade.style.display = 'none'; // Oculta o formulário
+    formulario_atividade.reset(); // Reseta os campos do formulário
+});
+
+// ----------------- POSTAR ATIVIDADE ---------------------
+
+// Define a ação a ser executada quando o botão 'botao_postar_atv' for clicado
+botao_postar_atv.onclick = async function () {
+    // Obtém o formulário de atividade pelo ID
+    let form = document.getElementById('formulario_atividade');
+    // Cria um objeto FormData com os dados do formulário
+    let dadosForm = new FormData(form);
+
+    // Envia uma requisição POST para o backend com os dados do formulário
+    const response = await fetch('http://localhost:3001/api/postar/atividade', {
+        method: 'POST',
+        body: dadosForm // Envia os dados do formulário como o corpo da requisição
+    });
+
+    let content = await response.json(); // Converte a resposta do servidor para JSON
+    console.log(content); // Exibe a resposta no console
+
+    if (content.success) {
+        alert('Sucesso!'); // Mostra uma mensagem de sucesso ao usuário
+
+        // Oculta o formulário e reseta os campos após o sucesso
+        formulario_atividade.style.display = 'none';
+        formulario_atividade.reset();
+    } else {
+        alert('Algo deu errado, tente novamente!'); // Mostra uma mensagem de erro ao usuário
+    }
+};
+
 // Função que será executada quando o DOM estiver completamente carregado
 document.addEventListener('DOMContentLoaded', async () => {
     // Faz uma requisição GET para obter as atividades do backend
@@ -95,7 +147,9 @@ document.addEventListener('DOMContentLoaded', async () => {
             // Adiciona um evento de clique ao botão de salvar para enviar a atividade ao backend
             botao_salvar.addEventListener('click', async () => {
                 const atividadeId = atividade.id; // Obtém o ID da atividade
-                const usuarioId = usuario_logado.id; // Obtém o ID do usuário logado
+                const usuario_logado = JSON.parse(localStorage.getItem('usuario')); // Converte o JSON em um objeto
+                const usuarioId = usuario_logado.id; // Obtém o ID do usuário logado                
+                console.log(usuarioId)
             
                 // Cria um objeto com os dados da atividade e do usuário
                 let data = {

@@ -2,7 +2,7 @@
 const { Router } = require('express');
 
 // Importa as funções do controlador 'atividadeController'
-const { getAtividades, postarAtividade, salvarAtividade, atividadesSalvas } = require('../controller/atividadeController');
+const { getAtividades, postarAtividade, salvarAtividade, atividadesSalvas, getAtividadeById } = require('../controller/atividadeController');
 
 // Cria uma nova instância do roteador do Express
 const router = Router();
@@ -77,6 +77,8 @@ router.post('/salvar/atividade', salvarAtividade);
  *                 type: object
  */
 router.get('/atividade/salva/:usuario_id', atividadesSalvas);
+
+router.get('/get/atividade/:id', getAtividadeById);
 
 // Exporta o roteador para ser usado em outros módulos da aplicação
 module.exports = router;
