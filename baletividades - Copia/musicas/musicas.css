@@ -1,0 +1,210 @@
+/* Reset e fonte padrão */
+* {
+    padding: 0;
+    margin: 0;
+    font-family: Garet, sans-serif;
+    /* font-weight: 100; */
+}
+
+/* Estilização do cabeçalho */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #705035;
+    height: 12vh;
+    padding-right: 10vw;
+}
+
+.logo {
+    width: 6%;
+    filter: invert(100%);
+}
+
+.itens_header {
+    color: white;
+    text-decoration: none;
+}
+
+.itens_header:hover {
+    color: #af7d56;
+    border-bottom: 1px solid #af7d56;
+}
+
+/* Seção de músicas */
+.musicas {
+    background-color: #EDD6C2;
+    height: 88vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2vw;
+}
+
+.titulo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.titulo > h1 {
+    font-size: 20pt;
+    font-weight: bolder;
+}
+
+/* Sugestões de músicas */
+.sugestao_musica {
+    background-color: #C59A78;
+    width: 25vw;
+    height: 16vh;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+}
+
+/* Updated layout for .opçoes_musicas to display in a grid */
+.opçoes_musicas {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* Creates three equal columns */
+    gap: 2vw;
+    font-weight: bolder;
+    justify-items: center; /* Centers items horizontally */
+}
+
+
+.img_musica {
+    width: 30%;
+    height: 100%;
+    border-bottom-left-radius: 10px;
+    border-top-left-radius: 10px;
+}
+
+.imagem_musica {
+    width: 99%;
+    border-bottom-left-radius: 10px;
+    border-top-left-radius: 10px;
+}
+
+.descricao_msc {
+    width: 70%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Estilização da seção principal de postagem */
+.postar_musica {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 20vh;
+    background-color: #af7d56;
+    font-family: 'Arial', sans-serif;
+}
+
+/* Botão "Postar música" principal */
+.botao_publicar_musica {
+    background-color: #EDD6C2;
+    border-radius: 10px;
+    border: none;
+    width: 12vw;
+    height: 6vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1rem;
+    font-weight: bold;
+    color: #5f4b32;
+    transition: background-color 0.3s ease;
+}
+
+.botao_publicar_musica:hover {
+    background-color: #dfb590;
+    cursor: pointer;
+}
+
+/* Estilização do formulário de postagem de música */
+#formulario_musica {
+    display: none; /* Inicialmente oculto */
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    gap: 2vh;
+    background-color: #ffdac5;
+    width: 30vw;
+    padding: 20px;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    transition: 0.5s;
+}
+
+/* Estilização dos campos de entrada do formulário */
+.campo_formulario {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.campo_musica {
+    font-size: 1rem;
+    font-weight: bold;
+    color: #5f4b32;
+    margin-bottom: 5px;
+}
+
+input[type="text"],
+input[type="file"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    font-size: 1rem;
+    background-color: #fffaf0;
+}
+
+input[type="file"] {
+    font-size: 0.9rem;
+    color: #5f4b32;
+}
+
+/* Estilização dos botões de ação no formulário */
+.botoes {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.botoes button {
+    background-color: #EDD6C2;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 1rem;
+    font-weight: bold;
+    color: #5f4b32;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s;
+}
+
+.botoes button:hover {
+    background-color: #dfb590;
+    transform: scale(1.05);
+}
+
+#cancelar_postar_msc {
+    background-color: #f4a896;
+}
+
+#cancelar_postar_msc:hover {
+    background-color: #e08b7b;
+}
