@@ -35,16 +35,17 @@ main {
 }
 
 .atividades {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 3vw;
+    background-color: #dfb590;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 colunas iguais */
+    gap: 20px; /* Espaçamento entre os itens */
+    padding: 20px; /* Adiciona um espaçamento interno */
 }
 
 .caixa_atividade {
     /* border: 1px solid green; */
     width: 15vw;
-    height: 40vh;
+    height: 45vh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -66,8 +67,12 @@ main {
     border-bottom-right-radius: 15px;
     border-bottom-left-radius: 15px;
     display: flex;
-    align-items: center;
     justify-content: center;
+    gap: 1vw;
+}
+
+.topico_info {
+    margin-left: 1vw;
 }
 
 .texto_atividade {
@@ -76,6 +81,7 @@ main {
     display: flex;
     justify-content: center;
     flex-direction: column;
+    gap: 1vh;
 }
 
 .nome {
@@ -86,8 +92,21 @@ main {
     font-size: 10pt;
 }
 
-.salvar {
+.excluir_atividade {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.botao_excluir {
+    border: none;
+    background-color: #EDD6C2;
+    width: 3.4vw;
+    height: 3vh;
+    border-radius: 7px;
+}
+
+.botao_excluir:hover {
+    background-color: #dfb590;
+    cursor: pointer;
 }

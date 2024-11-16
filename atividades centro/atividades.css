@@ -183,18 +183,16 @@ input[type="file"] {
 
 .atividades {
     background-color: #dfb590;
-    height: 50vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 6vw;
-    
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 colunas iguais */
+    gap: 20px; /* Espaçamento entre os itens */
+    padding: 20px; /* Adiciona um espaçamento interno */
 }
 
 .caixa_atividade {
     /* border: 1px solid green; */
-    width: 15vw;
-    height: 40vh;
+    width: 19vw;
+    height: 53vh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -236,11 +234,18 @@ input[type="file"] {
     font-size: 10pt;
 }
 
+.salvar {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    gap: 2vh;
+}
+
 .botao_salvar {
     background-color: #EDD6C2;
     border: none;
     height: 4vh;
-    width: 4vw;
+    width: 7vw;
     border-radius: 10px;
 }
 
@@ -249,21 +254,15 @@ input[type="file"] {
     cursor: pointer;
 }
 
-.avaliacao {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 10px;
+.botao_descricao {
+    background-color: #EDD6C2;
+    border: none;
+    height: 4vh;
+    width: 7vw;
+    border-radius: 10px;
 }
 
-.estrela {
-    font-size: 24px;
-    color: #ccc;
+.botao_descricao:hover {
+    background-color: #dfb590;
     cursor: pointer;
-    transition: color 0.3s;
-}
-
-.estrela:hover,
-.estrela.ativa {
-    color: #FFD700;
 }

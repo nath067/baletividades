@@ -42,6 +42,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                 
                 // Audio player
                 const audioPlayer = document.createElement('audio');
+                audioPlayer.classList.add('player_audio');
                 audioPlayer.controls = true;
                 audioPlayer.src = `../back/src/uploads/musicas/${musica.arquivo}`;
 
@@ -62,6 +63,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     // Show post form on "Post Music" button click
     botaoPublicarMusica.addEventListener('click', () => {
         formularioMusica.style.display = 'block';
+        formularioMusica.style.zIndex = '10'
     });
 
     // Hide form on "Cancel" button click
