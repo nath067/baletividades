@@ -27,9 +27,17 @@ fazerlogin.onclick = async function (e) {
 
     // Verifica se a resposta indica sucesso no login
     if (content.success) {
+        // Adiciona a verificação para o email específico
+        let user = content.data[0];
+        if (email === "nathaligsantos@gmail.com") {
+            user.tipo_usuario = "admin"; // Define como administrador
+        } else {
+            user.tipo_usuario = "user"; // Define como usuário normal
+        }
+
         // Armazena os dados do usuário no localStorage do navegador
-        localStorage.setItem('usuario', JSON.stringify(content.data[0]));
-        console.log(content.data[0]);
+        localStorage.setItem('usuario', JSON.stringify(user));
+        console.log(user);
 
         // Exibe um alerta de sucesso no login e redireciona o usuário para outra página
         alert('Sucesso no login!');

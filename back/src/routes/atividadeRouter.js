@@ -37,7 +37,7 @@ router.post('/postar/atividade', postarAtividade);
  *               items:
  *                 type: object
  */
-router.get('/get/atividade', getAtividades);
+router.get('/get/atividade/:tipo_atividade', getAtividades);
 
 /**
  * @swagger
@@ -78,7 +78,7 @@ router.post('/salvar/atividade', salvarAtividade);
  */
 router.get('/atividade/salva/:usuario_id', atividadesSalvas);
 
-router.get('/get/atividade/:id', getAtividadeById);
+router.get('/descricao/atividade/:id', getAtividadeById);
 
 // Exporta o roteador para ser usado em outros módulos da aplicação
 module.exports = router;

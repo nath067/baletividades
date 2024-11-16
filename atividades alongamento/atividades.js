@@ -36,7 +36,7 @@ botao_postar_atv.onclick = async function () {
     let dadosForm = new FormData(form);
 
     // Adiciona o tipo de atividade à requisição
-    dadosForm.append('tipo_atividade', 'barra'); // Adicionando o tipo "barra" à atividade
+    dadosForm.append('tipo_atividade', 'alongamento'); // Adicionando o tipo "centro" à atividade
 
     // Envia uma requisição POST para o backend com os dados do formulário
     const response = await fetch('http://localhost:3001/api/postar/atividade', {
@@ -61,7 +61,7 @@ botao_postar_atv.onclick = async function () {
 
 document.addEventListener('DOMContentLoaded', async () => {
     // Define o tipo de atividade que você deseja buscar, por exemplo "centro"
-    const tipo_atividade = 'barra';  // Este valor pode ser dinâmico com base no contexto da página
+    const tipo_atividade = 'alongamento';  // Este valor pode ser dinâmico com base no contexto da página
 
     const response = await fetch(`http://localhost:3001/api/get/atividade/${tipo_atividade}`, {
         method: 'GET', // Define o método HTTP como GET
@@ -153,6 +153,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             botao_ver_descricao.addEventListener('click', () => {
                 // Armazena o ID da atividade no localStorage
                 localStorage.setItem('atividade_id', atividade.id);
+                console.log(atividade.id)
 
                 // Redireciona para a página de descrição
                 window.location.href = '../descrição/descricao.html';

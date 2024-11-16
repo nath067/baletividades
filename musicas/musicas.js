@@ -3,6 +3,15 @@ document.addEventListener('DOMContentLoaded', async () => {
     const formularioMusica = document.getElementById('formulario_musica');
     const botaoPublicarMusica = document.getElementById('botao_publicar_musica');
     const botaoCancelarMusica = document.getElementById('cancelar_postar_msc');
+    const secaoPostarMusica = document.getElementById('postar_musica')
+
+    // Verificar tipo de usuário (admin ou não)
+    const usuarioLogado = JSON.parse(localStorage.getItem('usuario'));
+    
+    // Se o usuário não for administrador, esconde a opção de postar música
+    if (usuarioLogado.tipo_usuario !== 'admin') {
+        secaoPostarMusica.style.display = 'none'; // Oculta o botão de "Postar música"
+    }
 
     // Function to load music from the backend
     async function carregarMusicas() {
@@ -60,8 +69,9 @@ document.addEventListener('DOMContentLoaded', async () => {
         formularioMusica.style.display = 'none';
     });
 
-    // Submit new music to backend
-    document.getElementById('botao_postar_msc').addEventListener('click', async () => {
+    const postarMusica = document.getElementById('botao_postar_msc')
+    
+    postarMusica.addEventListener('click', async () => {
         const formData = new FormData(formularioMusica);
 
         const response = await fetch('http://localhost:3001/api/postar/musica', {
@@ -81,6 +91,5 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
     });
 
-    // Load music on start
     carregarMusicas();
 });

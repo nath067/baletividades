@@ -39,61 +39,63 @@ async function postarAtividade(request, response) {
             });
         }
 
-        // Define os parâmetros a serem inseridos no banco de dados
+        // Define os parâmetros a serem inseridos no banco de dados, incluindo o tipo da atividade
         const params = Array(
             request.body.nome,   // Nome da atividade
             request.body.nivel,  // Nível da atividade
-            imagemNome,
-            request.body.descricao  // Descrição da atividade
+            imagemNome,          // Nome da imagem
+            request.body.descricao,  // Descrição da atividade
+            request.body.tipo_atividade // Tipo da atividade (por exemplo, "barra")
         );
 
         // Define a query SQL para inserir uma nova atividade no banco de dados
-        const query = 'INSERT INTO atividade(nome, nivel, imagem, descricao) VALUES(?,?,?,?)';
+        const query = 'INSERT INTO atividade(nome, nivel, imagem, descricao, tipo_atividade) VALUES(?,?,?,?,?)';
 
         // Executa a query no banco de dados
         connection.query(query, params, (err, results) => {
             if (results) {
-                response
-                    .status(201)
-                    .json({
-                        success: true,
-                        message: "Sucesso!",
-                        data: results
-                    });
+                response.status(201).json({
+                    success: true,
+                    message: "Atividade criada com sucesso!",
+                    data: results
+                });
             } else {
-                response
-                    .status(400)
-                    .json({
-                        success: false,
-                        message: "Ops, deu problema!",
-                        data: err
-                    });
+                response.status(400).json({
+                    success: false,
+                    message: "Ops, ocorreu um erro ao salvar a atividade!",
+                    data: err
+                });
             }
         });
     });
 }
 
 async function getAtividades(request, response) {
-    // Define a query SQL para buscar todas as atividades
-    const query = 'SELECT * FROM atividade';
+    // Obtém o tipo de atividade da query string
+    const tipo_atividade = request.params.tipo_atividade;  // Tipo da atividade, que virá da query string
+    console.log('Tipo de atividade:', tipo_atividade);
 
-    // Executa a query no banco de dados
-    connection.query(query, (err, results) => {
-        if (results) {
-            response.status(200).json({
-                success: true,
-                message: "Sucesso no get!",
-                data: results
-            });
-        } else {
-            response.status(400).json({
+    // Define a consulta SQL para buscar as atividades com base no tipo
+    const query = 'SELECT * FROM atividade WHERE tipo_atividade = ?';
+
+    // Executa a consulta no banco de dados
+    connection.query(query, [tipo_atividade], (err, results) => {
+        if (err) {
+            return response.status(400).json({
                 success: false,
-                message: "Erro!",
+                message: "Erro ao buscar atividades!",
                 sql: err
             });
         }
+
+        response.status(200).json({
+            success: true,
+            message: "Atividades obtidas com sucesso!",
+            data: results
+        });
     });
 }
+
 
 async function salvarAtividade(request, response) {
     // Obtém os IDs da atividade e do usuário do corpo da requisição
@@ -153,10 +155,14 @@ async function atividadesSalvas(request, response) {
 }
 
 async function getAtividadeById(request, response) {
-    const { id } = request.params;
+    const atividadeId = request.params.id; // Pega o ID dos parâmetros da rota
     const query = 'SELECT * FROM atividade WHERE id = ?';
 
-    connection.query(query, [id], (err, results) => {
+    connection.query(query, [atividadeId], (err, results) => {
+        if (err) {
+            return response.status(400).json({ success: false, message: "Erro ao buscar atividade", sql: err });
+        }
+
         if (results.length > 0) {
             response.status(200).json({
                 success: true,
@@ -170,6 +176,7 @@ async function getAtividadeById(request, response) {
         }
     });
 }
+
 
 
 // Exporta as funções para serem usadas em outros módulos
