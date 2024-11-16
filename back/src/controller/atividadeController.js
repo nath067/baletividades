@@ -128,15 +128,12 @@ async function salvarAtividade(request, response) {
 }
 
 async function atividadesSalvas(request, response) {
-    // Obtém o ID do usuário dos parâmetros da rota
     const usuarioId = request.params.usuario_id;
 
-    // Define a query SQL para buscar as atividades salvas pelo usuário, ordenadas por nível
-    const query = `SELECT a.nome, a.nivel, a.imagem FROM salvos s 
+    const query = `SELECT a.id, a.nome, a.nivel, a.imagem, a.tipo_atividade FROM salvos s 
                    INNER JOIN atividade a ON s.atividade_id = a.id 
                    WHERE s.id_usuario = ? ORDER BY a.nivel ASC`;
 
-    // Executa a query no banco de dados
     connection.query(query, [usuarioId], (err, results) => {
         if (err) {
             return response.status(400).json({ 
@@ -177,6 +174,35 @@ async function getAtividadeById(request, response) {
     });
 }
 
+async function excluirAtividadeSalva(request, response) {
+    const atividadeId = request.params.atividade_id; // ID da atividade salva
+    const usuarioId = request.params.usuario_id; // ID do usuário
+
+    // Query para remover a atividade salva
+    const query = 'DELETE FROM salvos WHERE atividade_id = ? AND id_usuario = ?';
+
+    connection.query(query, [atividadeId, usuarioId], (err, results) => {
+        if (err) {
+            return response.status(400).json({ 
+                success: false, 
+                message: "Erro ao excluir atividade salva!" 
+            });
+        }
+
+        if (results.affectedRows > 0) {
+            response.status(200).json({ 
+                success: true, 
+                message: "Atividade salva excluída com sucesso!" 
+            });
+        } else {
+            response.status(404).json({ 
+                success: false, 
+                message: "Atividade salva não encontrada!" 
+            });
+        }
+    });
+}
+
 
 
 // Exporta as funções para serem usadas em outros módulos
@@ -185,5 +211,6 @@ module.exports = {
     getAtividades,
     salvarAtividade,
     atividadesSalvas,
-    getAtividadeById
+    getAtividadeById,
+    excluirAtividadeSalva
 };
